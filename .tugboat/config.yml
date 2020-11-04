@@ -8,6 +8,7 @@ services:
       init:
         - a2enmod rewrite headers
         - ln -snf $TUGBOAT_ROOT/docroot $DOCROOT
+        - composer self-update --1
         - composer install --optimize-autoloader
       update:
         - composer install --optimize-autoloader
@@ -24,7 +25,7 @@ services:
   mysql:
     image: tugboatqa/mysql:5
   node:
-    image: tugboatqa/nodejs:12
+    image: tugboatqa/node:12
     expose: 3000
     depends:
       - php
